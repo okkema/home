@@ -1,0 +1,21 @@
+{
+  "name": "hub",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "astro:start": "astro dev",
+    "start": "wrangler pages dev --compatibility-date=2023-10-25 --r2=BUCKET -- astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "prestart": "cp .env .dev.vars"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^7.6.2",
+    "@cloudflare/pages-plugin-cloudflare-access": "^1.0.3",
+    "@cloudflare/pages-plugin-sentry": "^1.1.1",
+    "astro": "^3.4.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.15.0"
+  }
+}

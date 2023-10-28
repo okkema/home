@@ -1,0 +1,10 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+const blob = await Astro.locals.runtime.env.BUCKET.get("settings.json")
+const settings = await blob!.json()
+---
+
+<Layout title="index">
+	{JSON.stringify(settings)}
+</Layout>

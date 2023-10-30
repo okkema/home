@@ -2,9 +2,9 @@
 import Layout from "../layouts/Layout.astro"
 
 const blob = await Astro.locals.runtime.env.BUCKET.get("settings.json")
-const settings = await blob!.json()
+const settings = await blob?.json() ?? null
 ---
 
 <Layout title="index">
-	{JSON.stringify(settings)}
+	{settings ? JSON.stringify(settings) : "No settings configured"}
 </Layout>

@@ -5,7 +5,6 @@ type ENV = {
   BUCKET: R2Bucket
   CLOUDFLARE_ACCESS_DOMAIN: string
   CLOUDFLARE_ACCESS_AUD: striing
-  CLOUDFLARE_ZONE: string
   SENTRY_DSN: string
 }
 

@@ -18,13 +18,14 @@ module "secrets" {
 
 module "page" {
   source     = "app.terraform.io/okkema/page/cloudflare"
-  version    = "~> 0.2"
+  version    = "~> 0.3"
   depends_on = [module.application, module.bucket]
 
-  account_id = var.cloudflare_account_id
-  zone_id    = var.cloudflare_zone_id
-  name       = var.github_repository
-  repo_name  = var.github_repository
+  account_id     = var.cloudflare_account_id
+  zone_id        = var.cloudflare_zone_id
+  name           = var.github_repository
+  repo_name      = var.github_repository
+  pages_hostname = "@"
   production_buckets = {
     BUCKET = module.bucket.id
   }
@@ -43,6 +44,8 @@ module "application" {
   zone_id      = var.cloudflare_zone_id
   name         = var.github_repository
   github_teams = [var.github_repository]
+  use_root     = true
+  path         = "edit"
 }
 
 module "team" {

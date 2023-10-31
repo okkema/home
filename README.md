@@ -1,3 +1,3 @@
-# hub
+# home
 
-Public homepage generator
+Okkema Labs Home Page

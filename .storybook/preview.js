@@ -1,3 +1,5 @@
+import "semantic-ui-css/semantic.min.css"
+
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
@@ -9,6 +11,6 @@ const preview = {
       },
     },
   },
-};
+}
 
-export default preview;
+export default preview

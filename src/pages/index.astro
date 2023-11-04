@@ -4,10 +4,9 @@ import { Home } from "../components/Home"
 import { DemoSettings } from "../demo"
 
 const blob = await Astro.locals.runtime.env.BUCKET.get("settings.json")
-
 const settings = await blob?.json<Settings>() ?? DemoSettings
 ---
 
-<Base title="index">
+<Base {...settings}>
 	<Home {...settings} />
 </Base>

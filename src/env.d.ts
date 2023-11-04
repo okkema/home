@@ -10,6 +10,12 @@ type ENV = {
 
 type SemanticSIZES = import("semantic-ui-react").SemanticSIZES
 type Settings = {
+  author: {
+    name: string
+    email: string
+  }
+  type: string
+  url: string
   title: string
   description: string
   image: {

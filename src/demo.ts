@@ -1,4 +1,10 @@
 export const DemoSettings: Settings = {
+	author: {
+		name: "Okkema Labs",
+		email: "correos@okkema.org"
+	},
+	type: "website",
+	url: "https://okkema.org",
 	title: "Okkema Labs",
 	description: "Cloud Consulting and Web Development",
 	image: {

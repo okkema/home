@@ -9,12 +9,33 @@ export const DemoSettings: Settings = {
 	description: "Cloud Consulting and Web Development",
 	image: {
 		src: "/logo.png",
-		size: "small"
+		size: "small",
+		alt: "Okkema Labs Official Logo"
 	},
 	links: [
+    {
+      title: "Crank Tools",
+      href: "https://crank.tools",
+      icon: "bicycle",
+      color: "blue"
+    },
 		{
-			title: "Contact",
-			href: "mailto:correos@okkema.org" 
-		}
+			title: "Email",
+			href: "mailto:correos@okkema.org",
+			icon: "envelope",
+      color: "violet"
+		},
+    {
+      title: "okkema",
+      href: "https://github.com/okkema",
+      icon: "github",
+      color: "black"
+    },
+    {
+      title: "@okkema",
+      href: "https://www.npmjs.com/org/okkema",
+      icon: "npm",
+      color: "red"
+    }
 	]
 }

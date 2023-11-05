@@ -1,11 +1,12 @@
 ---
 import Base from "../../layouts/Base.astro"
 import { DemoSettings } from "../../demo"
+import { SettingsForm } from "../../components/SettingsForm"
 
 const blob = await Astro.locals.runtime.env.BUCKET.get("settings.json")
 const settings = await blob?.json<Settings>() ?? DemoSettings
 ---
 
 <Base {...settings}>
-	edit
+	<SettingsForm {...settings} client:load />
 </Base>

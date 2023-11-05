@@ -20,6 +20,7 @@
     "@cloudflare/pages-plugin-cloudflare-access": "^1.0.3",
     "@cloudflare/pages-plugin-sentry": "^1.1.1",
     "astro": "^3.4.0",
+    "react-hook-form": "^7.47.0",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4"
   },

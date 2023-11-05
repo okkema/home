@@ -9,22 +9,27 @@ type ENV = {
 }
 
 type SemanticSIZES = import("semantic-ui-react").SemanticSIZES
+type SemanticCOLORS = import("semantic-ui-react").SemanticCOLORS
+type OpenGraphType = "website" | "profile"
 type Settings = {
+  type: OpenGraphType
+  title: string
+  description?: string
   author: {
     name: string
     email: string
   }
-  type: string
   url: string
-  title: string
-  description: string
   image: {
     src: string
     size: SemanticSIZES
+    alt: string
   }
   links: {
     title: string
     href: string
+    icon?: string
+    color?: SemanticCOLORS
   }[]
 }
 

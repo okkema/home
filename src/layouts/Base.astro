@@ -18,7 +18,7 @@ const settings = Astro.props
     <meta property="og:title" content={settings.title}>
     <meta property="og:type" content={settings.type}>
     <meta property="og:url" content={settings.url}>
-    <meta property="og:description" content={settings.description}>
+    {settings.description && <meta property="og:description" content={settings.description}>}
     <meta property="og:image" content={`${settings.url}${settings.image.src}`}>
     <script type="application/ld+json">
       {
@@ -38,6 +38,7 @@ const settings = Astro.props
       }
       body{
         margin: 0;
+        padding: 16px;
         display: flex;
         flex-direction: column;
         align-items: center;

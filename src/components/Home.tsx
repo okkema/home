@@ -11,13 +11,36 @@ export function Home(settings: Settings): JSX.Element {
   return (
     <Segment.Group compact>
       <Segment>
-        <Image src={settings.image.src} size={settings.image.size} alt={settings.image.alt} centered />
+        <Image 
+          alt={settings.image.alt} 
+          size={settings.image.size} 
+          src={settings.image.src} 
+          centered 
+        />
       </Segment>
-      <Segment size="massive" textAlign="center" content={settings.title}/>
-      {settings.description && <Segment size="large" textAlign="center" content={settings.description} />}
-      {settings.links.map((link, index) => (
-        <Button as="a" href={link.href} attached="bottom" size="large" icon={link.icon} content={link.title} color={link.color} style={linkStyle(settings, index)}/>
-      ))}
+      <Segment 
+        content={settings.title}
+        size="massive" 
+        textAlign="center" 
+      />
+      {settings.description && 
+        <Segment 
+          content={settings.description}
+          size="large" 
+          textAlign="center" 
+        />}
+      {settings.links.map(function(link, index) {
+        return <Button 
+          as="a" 
+          attached="bottom" 
+          color={link.color} 
+          content={link.title} 
+          href={link.href} 
+          icon={link.icon} 
+          size="large" 
+          style={linkStyle(settings, index)}
+        />
+      })}
     </Segment.Group>
   )
 }

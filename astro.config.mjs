@@ -6,6 +6,9 @@ export default defineConfig({
   output: "server",
   adapter: cloudflare({
     mode: "directory",
+    routes: {
+      strategy: "exclude",
+    },
   }),
   image: {
     service: passthroughImageService()

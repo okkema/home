@@ -1,7 +1,6 @@
-import { useState } from "react"
 import { useForm, FormProvider, useFieldArray, useFormContext } from "react-hook-form"
 import type { FieldError, SubmitHandler } from "react-hook-form"
-import { Accordion, Button, Form, Label, type SemanticWIDTHS } from "semantic-ui-react"
+import { Button, Form, Header, Label, Segment, type SemanticWIDTHS } from "semantic-ui-react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 
@@ -9,6 +8,30 @@ const TypeOptions: [OpenGraphType, string][] = [
   ["website", "Website"],
   ["profile", "Profile"],
 ]
+
+const ColorOptions: [SemanticCOLORS | "", string][] = [
+  ["", ""],
+  ["black", "Black"],
+  ["blue", "Blue"],
+  ["brown", "Brown"],
+  ["green", "Green"],
+  ["grey", "Grey"],
+  ["olive", "Olice"],
+  ["orange", "Orange"],
+  ["pink", "Pink"],
+  ["purple", "Purple"],
+  ["red", "Red"],
+  ["teal", "Teal"],
+  ["violet", "Violet"],
+  ["yellow", "Yellow"],
+]
+
+const EmptyLink: Link = {
+  title: "",
+  href: "",
+  icon: "",
+  color: "",
+}
 
 const SettingsSchema = z.object({
   type: z.string(),
@@ -29,7 +52,7 @@ const SettingsSchema = z.object({
     href: z.string().trim().min(1, { message: "Link href is required" }),
     icon: z.string(),
     color: z.string(),
-  })).optional(),
+  })).optional(), 
 })
 
 type FieldProps = { 
@@ -79,25 +102,6 @@ function SelectField({ name, label, error, required, width, disabled, options, }
   </Form.Field>
 }
 
-type ExpandableProps = {
-  children: JSX.Element | JSX.Element[]
-  title: string
-  active?: boolean
-  disabled?: boolean
-}
-function Expandable(props: ExpandableProps): JSX.Element {
-  const [active, setActive] = useState(props.active ?? false)
-  const onClick = props.disabled ? undefined : function() {
-    setActive(function(current) {
-      return !current
-    })
-  }
-  return <Accordion as={Form.Field}>
-    <Accordion.Title active={active} onClick={onClick} content={props.title} />
-    <Accordion.Content active={active} children={props.children} />
-  </Accordion>
-}
-
 export function SettingsForm(settings: Settings): JSX.Element {
   const context = useForm<Settings>({ defaultValues: settings, resolver: zodResolver(SettingsSchema) })
   const links = useFieldArray({ 
@@ -112,30 +116,50 @@ export function SettingsForm(settings: Settings): JSX.Element {
         "Content-Type": "application/json",
       },
     })
+    window.location.href = "/"
   }
   const errors = context.formState.errors
   return <FormProvider {...context}>
-    <Form onSubmit={context.handleSubmit(onSubmit)} error={!context.formState.isValid}>
-      <Form.Group widths={3}>
-        <TextField name="author.name" label="Author Name" error={errors.author?.name} required />
-        <TextField name="author.email" label="Author Email" error={errors.author?.email} required />
-      </Form.Group>
-      <Form.Group widths={3}>
-        <SelectField name="type" label="Type" options={TypeOptions} error={errors.type} required />
-        <TextField name="title" label="Title" error={errors.title} required />
-        <TextField name="url" label="URL" error={errors.url} disabled />
-      </Form.Group>
-      <TextAreaField name="description" label="Description" rows={3} />
-      <Expandable title="Links" active={!!settings.links.length}>
+    <Form onSubmit={context.handleSubmit(onSubmit)} error={!context.formState.isValid} style={{ height: "100%" }}>
+      <Header as="h3" attached="top" content="Content" subheader="This is the main content that is visible the home page." />
+      <Segment attached>
+        <Form.Group widths={2}>
+          <TextField name="title" label="Title" error={errors.title} required />
+          <TextField name="url" label="URL" error={errors.url} disabled />
+        </Form.Group>
+        <TextAreaField name="description" label="Description" rows={3} />
+      </Segment>
+      <Segment attached clearing>
+        <Header as="h3" content="Links" floated="left" style={{ marginBottom: 0 }} subheader="Add or remove links that appear beneath the main content." />
+        <Button icon="plus" floated="right" content="Add" onClick={function() { links.append(EmptyLink) }} primary />
+      </Segment>
+      <Segment attached>
         {links.fields.map(function(link, index) {
-          return <Form.Group key={link.id} widths={3}>
-            <TextField name={`links.${index}.title`} label="Title" error={errors.links?.[index]?.title} required />
-            <TextField name={`links.${index}.href`} label="href" error={errors.links?.[index]?.href} required />
-            <TextField name={`links.${index}.icon`} label="Icon" error={errors.links?.[index]?.icon} />
-          </Form.Group>
+          return <Segment clearing>
+            <Form.Group key={link.id} widths={4}>
+              <TextField name={`links.${index}.title`} label="Title" error={errors.links?.[index]?.title} required />
+              <TextField name={`links.${index}.href`} label="href" error={errors.links?.[index]?.href} required />
+              <TextField name={`links.${index}.icon`} label="Icon" error={errors.links?.[index]?.icon} />
+              <SelectField name={`links.${index}.color`} label="Color" error={errors.links?.[index]?.color} options={ColorOptions} />
+            </Form.Group>
+            <Button icon="trash" floated="right" content="Remove" onClick={function() { links.remove(index) }} secondary />
+          </Segment> 
         })}
-      </Expandable>
-      <Button floated="right" type="submit" content="Save" />
+      </Segment>
+      <Header as="h3" attached content="Metadata" subheader="This is hidden metadata that is used in search results and social posting." />
+      <Segment attached>
+        <Form.Group widths={3}>
+          <SelectField name="type" label="Type" options={TypeOptions} error={errors.type} required />
+          <TextField name="author.name" label="Author Name" error={errors.author?.name} required />
+          <TextField name="author.email" label="Author Email" error={errors.author?.email} required />
+        </Form.Group>
+      </Segment>
+      <Segment clearing attached>
+        <Button.Group floated="right">
+          <Button content="Cancel" icon="undo" onClick={function() { window.location.href = "/" }} secondary />
+          <Button type="submit" content="Save" icon="save" primary />
+        </Button.Group>
+      </Segment>
     </Form>
   </FormProvider>
 }

@@ -1,6 +1,6 @@
-import { defineConfig, passthroughImageService } from "astro/config";
-import cloudflare from "@astrojs/cloudflare";
-import react from "@astrojs/react";
+import { defineConfig, passthroughImageService } from "astro/config"
+import cloudflare from "@astrojs/cloudflare"
+import react from "@astrojs/react"
 
 export default defineConfig({
   output: "server",

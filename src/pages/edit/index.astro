@@ -5,6 +5,7 @@ import { SettingsForm } from "../../components/SettingsForm"
 
 const blob = await Astro.locals.runtime.env.BUCKET.get("settings.json")
 const settings = await blob?.json<Settings>() ?? DemoSettings
+settings.url = `${Astro.url.protocol}//${Astro.url.host}`
 ---
 
 <Base {...settings}>

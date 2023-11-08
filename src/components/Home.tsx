@@ -33,7 +33,7 @@ export function Home(settings: Settings): JSX.Element {
         return <Button 
           as="a" 
           attached="bottom" 
-          color={link.color} 
+          color={link.color === "" ? undefined : link.color} 
           content={link.title} 
           href={link.href} 
           icon={link.icon} 

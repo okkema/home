@@ -4,9 +4,9 @@ export const DemoSettings: Settings = {
 		email: "correos@okkema.org"
 	},
 	type: "website",
-	url: "https://okkema.org",
-	title: "Okkema Labs",
-	description: "Cloud Consulting and Web Development",
+	url: "",
+	title: "Home Page Generator",
+	description: "Navigate to \"/edit\" to configure settings",
 	image: {
 		src: "/logo.png",
 		size: "small",
@@ -14,28 +14,10 @@ export const DemoSettings: Settings = {
 	},
 	links: [
     {
-      title: "Crank Tools",
-      href: "https://crank.tools",
-      icon: "bicycle",
-      color: "blue"
-    },
-		{
-			title: "Email",
-			href: "mailto:correos@okkema.org",
-			icon: "envelope",
-      color: "violet"
-		},
-    {
-      title: "okkema",
-      href: "https://github.com/okkema",
+      title: "Repository",
+      href: "https://github.com/okkema/home",
       icon: "github",
       color: "black"
-    },
-    {
-      title: "@okkema",
-      href: "https://www.npmjs.com/org/okkema",
-      icon: "npm",
-      color: "red"
     }
 	]
 }

@@ -11,6 +11,12 @@ type ENV = {
 type SemanticSIZES = import("semantic-ui-react").SemanticSIZES
 type SemanticCOLORS = import("semantic-ui-react").SemanticCOLORS
 type OpenGraphType = "website" | "profile"
+type Link = {
+  title: string
+  href: string
+  icon?: string
+  color: SemanticCOLORS | ""
+}
 type Settings = {
   type: OpenGraphType
   title: string
@@ -25,12 +31,7 @@ type Settings = {
     size: SemanticSIZES
     alt: string
   }
-  links: {
-    title: string
-    href: string
-    icon?: string
-    color?: SemanticCOLORS
-  }[]
+  links: Link[]
 }
 
 // Runtime type corresponds to "mode" in /astro.config.mjs

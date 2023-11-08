@@ -3,6 +3,7 @@ import type { FieldError, SubmitHandler } from "react-hook-form"
 import { Button, Form, Header, Label, Segment, type SemanticWIDTHS } from "semantic-ui-react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
+import { createRef } from "react"
 
 const TypeOptions: [OpenGraphType, string][] = [
   ["website", "Website"],
@@ -24,6 +25,17 @@ const ColorOptions: [SemanticCOLORS | "", string][] = [
   ["teal", "Teal"],
   ["violet", "Violet"],
   ["yellow", "Yellow"],
+]
+
+const SizeOptions: [SemanticSIZES, string][] = [
+  ["mini", "Mini"],
+  ["tiny", "Tiny"],
+  ["small", "Small"],
+  ["medium", "Medium"],
+  ["large", "Large"],
+  ["big", "Big"],
+  ["huge", "Huge"],
+  ["massive", "Massive"],
 ]
 
 const EmptyLink: Link = {
@@ -103,6 +115,7 @@ function SelectField({ name, label, error, required, width, disabled, options, }
 }
 
 export function SettingsForm(settings: Settings): JSX.Element {
+  const fileInput = createRef<HTMLInputElement>()
   const context = useForm<Settings>({ defaultValues: settings, resolver: zodResolver(SettingsSchema) })
   const links = useFieldArray({ 
     control: context.control,
@@ -118,6 +131,18 @@ export function SettingsForm(settings: Settings): JSX.Element {
     })
     window.location.href = "/"
   }
+  async function handleChangeFile() {
+    const file = fileInput.current!.files![0]
+    const formData = new FormData()
+    formData.append("file", file)
+    const response = await fetch("/edit/image", {
+      method: "POST",
+      body: formData,
+    })
+    const json = await response.json<{ path: string }>()
+    const url = `${window.location.protocol}//${window.location.host}${json.path}`
+    context.setValue("image.src", url)
+  }
   const errors = context.formState.errors
   return <FormProvider {...context}>
     <Form onSubmit={context.handleSubmit(onSubmit)} error={!context.formState.isValid} style={{ height: "100%" }}>
@@ -128,6 +153,21 @@ export function SettingsForm(settings: Settings): JSX.Element {
           <TextField name="url" label="URL" error={errors.url} disabled />
         </Form.Group>
         <TextAreaField name="description" label="Description" rows={3} />
+        <Form.Group widths={3}>
+          <Form.Field>
+            <label htmlFor="file">Image</label>
+            <input
+              type="file"
+              id="file"
+              accept=".jpg,.jpeg,.png,.gif,.webp"
+              onChange={handleChangeFile}
+              ref={fileInput}
+            />
+          </Form.Field>
+          <TextField name="image.alt" label="Alt" error={errors.image?.alt} />
+          <SelectField name="image.size" label="Size" error={errors.image?.size} options={SizeOptions} />
+        </Form.Group>
+        <TextField name="image.src" label="src" error={errors.image?.src} />
       </Segment>
       <Segment attached clearing>
         <Header as="h3" content="Links" floated="left" style={{ marginBottom: 0 }} subheader="Add or remove links that appear beneath the main content." />

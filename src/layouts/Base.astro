@@ -13,7 +13,7 @@ const settings = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content={settings.description.value}>
     <meta name="author" content={`${settings.author.name} <${settings.author.email}>`}>
-    <title>{settings.title}</title>
+    <title>{settings.title.value}</title>
     <link rel="icon" href="favicon.ico">
     <meta property="og:title" content={settings.title.value}>
     <meta property="og:type" content={settings.type}>

@@ -11,7 +11,7 @@
     "prestart": "npm run build",
     "start": "npm run start:wrangler",
     "start:astro": "astro dev",
-    "start:storybook": "storybook dev -p 6006",
+    "start:storybook": "storybook dev -p 6006 --no-open",
     "start:wrangler": "wrangler pages dev dist --compatibility-date=2023-10-25 --r2=BUCKET"
   },
   "dependencies": {

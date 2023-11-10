@@ -11,14 +11,14 @@ const settings = Astro.props
 	<head>
 		<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content={settings.description}>
+    <meta name="description" content={settings.description.value}>
     <meta name="author" content={`${settings.author.name} <${settings.author.email}>`}>
     <title>{settings.title}</title>
     <link rel="icon" href="favicon.ico">
-    <meta property="og:title" content={settings.title}>
+    <meta property="og:title" content={settings.title.value}>
     <meta property="og:type" content={settings.type}>
     <meta property="og:url" content={settings.url}>
-    {settings.description && <meta property="og:description" content={settings.description}>}
+    <meta property="og:description" content={settings.description.value}>
     <meta property="og:image" content={`${settings.url}${settings.image.src}`}>
     <script type="application/ld+json">
       {

@@ -5,8 +5,14 @@ export const DemoSettings: Settings = {
 	},
 	type: "website",
 	url: "",
-	title: "Home Page Generator",
-	description: "Navigate to \"/edit\" to configure settings",
+	title: {
+		value: "Home Page Generator",
+		visible: true,
+	},
+	description: {
+		value: "Navigate to \"/edit\" to configure settings",
+		visible: true,
+	},
 	image: {
 		src: "/logo.png",
 		size: "small",

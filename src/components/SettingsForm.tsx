@@ -47,8 +47,14 @@ const EmptyLink: Link = {
 
 const SettingsSchema = z.object({
   type: z.string(),
-  title: z.string().trim().min(1, { message: "Title is required" }),
-  description: z.string().optional(),
+  title: z.object({
+    value: z.string().trim().min(1, { message: "Title is required" }),
+    visible: z.boolean(),
+  }),
+  description: z.object({
+    value: z.string().trim().min(1, { message: "Description is required" }),
+    visible: z.boolean(),
+  }),
   author: z.object({
     name: z.string().trim().min(1, { message: "Author Name is required" }),
     email: z.string().email().trim().min(1, { message: "Author Email is required" }),
@@ -79,7 +85,7 @@ type FieldProps = {
 type TextFieldProps = FieldProps
 function TextField({ name, label, error, required, width, disabled, }: TextFieldProps): JSX.Element {
   const context = useFormContext()
-  return <Form.Field required={required} width={width} error={!!error}>
+  return <Form.Field required={required} width={width} error={error}>
     <label>{label}</label>
     <input {...context.register(name, { required })} disabled={disabled} />
     {error && <Label content={error.message} pointing prompt />}
@@ -110,6 +116,16 @@ function SelectField({ name, label, error, required, width, disabled, options, }
         return <option key={option[0]} value={option[0]}>{option[1]}</option>
       })}
     </select>
+    {error && <Label content={error.message} pointing prompt />}
+  </Form.Field>
+}
+
+type CheckboxFieldProps = FieldProps
+function CheckboxField({ name, label, error, required, width, disabled, }: CheckboxFieldProps): JSX.Element {
+  const context = useFormContext()
+  return <Form.Field error={error} required={required} width={width} inline>
+    <label>{label}</label>
+    <input type="checkbox" {...context.register(name)} disabled={disabled} />
     {error && <Label content={error.message} pointing prompt />}
   </Form.Field>
 }
@@ -146,13 +162,17 @@ export function SettingsForm(settings: Settings): JSX.Element {
   const errors = context.formState.errors
   return <FormProvider {...context}>
     <Form onSubmit={context.handleSubmit(onSubmit)} error={!context.formState.isValid} style={{ height: "100%" }}>
-      <Header as="h3" attached="top" content="Content" subheader="This is the main content that is visible the home page." />
+      <Header as="h3" attached="top" content="Content" subheader="Content is visible and the main component of the home page." />
       <Segment attached>
         <Form.Group widths={2}>
-          <TextField name="title" label="Title" error={errors.title} required />
+          <TextField name="title.value" label="Title" error={errors.title?.value} required />
           <TextField name="url" label="URL" error={errors.url} disabled />
         </Form.Group>
-        <TextAreaField name="description" label="Description" rows={3} />
+        <TextAreaField name="description.value" label="Description" error={errors.description?.value} rows={3} required />
+        <Form.Group>
+          <CheckboxField name="title.visible" label="Show Title" />
+          <CheckboxField name="description.visible" label="Show Description" />
+        </Form.Group>
         <Form.Group widths={3}>
           <Form.Field>
             <label htmlFor="file">Image</label>
@@ -186,7 +206,7 @@ export function SettingsForm(settings: Settings): JSX.Element {
           </Segment> 
         })}
       </Segment>
-      <Header as="h3" attached content="Metadata" subheader="This is hidden metadata that is used in search results and social posting." />
+      <Header as="h3" attached content="Metadata" subheader="Metadata is hidden from view used in search results and social posting." />
       <Segment attached>
         <Form.Group widths={3}>
           <SelectField name="type" label="Type" options={TypeOptions} error={errors.type} required />

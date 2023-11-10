@@ -19,8 +19,14 @@ type Link = {
 }
 type Settings = {
   type: OpenGraphType
-  title: string
-  description?: string
+  title: {
+    value: string
+    visible: boolean
+  }
+  description: {
+    value: string
+    visible: boolean
+  }
   author: {
     name: string
     email: string

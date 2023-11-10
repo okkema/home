@@ -1,16 +1,9 @@
 import { Image, Segment, Button } from "semantic-ui-react"
 
-function linkStyle(settings: Settings, index: number) {
-  if (index === settings.links.length - 1) return undefined
-  return {
-    borderRadius: 0,
-  }
-}
-
 export function Home(settings: Settings): JSX.Element {
   return (
     <Segment.Group compact>
-      <Segment>
+      <Segment attached>
         <Image 
           alt={settings.image.alt} 
           size={settings.image.size} 
@@ -18,27 +11,29 @@ export function Home(settings: Settings): JSX.Element {
           centered 
         />
       </Segment>
-      <Segment 
-        content={settings.title}
-        size="massive" 
-        textAlign="center" 
-      />
-      {settings.description && 
+      {settings.title.visible && 
+          <Segment 
+          content={settings.title.value}
+          size="massive" 
+          textAlign="center"
+          attached 
+        />}
+      {settings.description.visible && 
         <Segment 
-          content={settings.description}
+          content={settings.description.value}
           size="large" 
           textAlign="center" 
+          attached
         />}
       {settings.links.map(function(link, index) {
         return <Button 
           as="a" 
-          attached="bottom" 
+          attached={index === settings.links.length - 1 ? "bottom" : true} 
           color={link.color === "" ? undefined : link.color} 
           content={link.title} 
           href={link.href} 
           icon={link.icon} 
           size="large" 
-          style={linkStyle(settings, index)}
         />
       })}
     </Segment.Group>

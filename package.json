@@ -12,7 +12,9 @@
     "start": "npm run start:wrangler",
     "start:astro": "astro dev",
     "start:storybook": "storybook dev -p 6006 --no-open",
-    "start:wrangler": "wrangler pages dev dist --compatibility-date=2023-10-25 --r2=BUCKET"
+    "start:wrangler": "wrangler pages dev dist --compatibility-date=2023-10-25 --r2=BUCKET",
+    "template:init": "git remote add template git@github.com:okkema/home.git",
+    "template:merge": "git merge template/main -m \"chore: merge template\" --allow-unrelated-histories --squash"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^7.6.2",

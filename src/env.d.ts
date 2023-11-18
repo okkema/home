@@ -11,6 +11,7 @@ type ENV = {
 type SemanticSIZES = import("semantic-ui-react").SemanticSIZES
 type SemanticCOLORS = import("semantic-ui-react").SemanticCOLORS
 type OpenGraphType = "website" | "profile"
+type SchemaOrgType = "Organization"
 type Link = {
   title: string
   href: string
@@ -18,8 +19,16 @@ type Link = {
   color: SemanticCOLORS | ""
 }
 type Settings = {
-  type: OpenGraphType
+  image: {
+    src: string
+    size: SemanticSIZES
+    alt: string
+  }
   title: {
+    value: string
+    visible: boolean
+  }
+  location: {
     value: string
     visible: boolean
   }
@@ -27,16 +36,13 @@ type Settings = {
     value: string
     visible: boolean
   }
+  og: OpenGraphType
+  schema: SchemaOrgType
   author: {
     name: string
     email: string
   }
   url: string
-  image: {
-    src: string
-    size: SemanticSIZES
-    alt: string
-  }
   links: Link[]
 }
 

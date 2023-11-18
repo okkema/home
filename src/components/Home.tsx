@@ -1,4 +1,4 @@
-import { Image, Segment, Button } from "semantic-ui-react"
+import { Image, Segment, Button, Icon } from "semantic-ui-react"
 
 export function Home(settings: Settings): JSX.Element {
   return (
@@ -25,6 +25,14 @@ export function Home(settings: Settings): JSX.Element {
           textAlign="center" 
           attached
         />}
+      {settings.location.visible && 
+        <Segment 
+          size="small" 
+          textAlign="center" 
+          attached
+        >
+          <Icon name="map marker alternate" />{settings.location.value}
+        </Segment>}
       {settings.links.map(function(link, index) {
         return <Button 
           as="a" 

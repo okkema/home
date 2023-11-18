@@ -5,7 +5,11 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { createRef } from "react"
 
-const TypeOptions: [OpenGraphType, string][] = [
+const SchemaOptions: [SchemaOrgType, string][] = [
+  ["Organization", "Organization"],
+]
+
+const OGOptions: [OpenGraphType, string][] = [
   ["website", "Website"],
   ["profile", "Profile"],
 ]
@@ -164,14 +168,16 @@ export function SettingsForm(settings: Settings): JSX.Element {
     <Form onSubmit={context.handleSubmit(onSubmit)} error={!context.formState.isValid} style={{ height: "100%" }}>
       <Header as="h3" attached="top" content="Content" subheader="Content is visible and the main component of the home page." />
       <Segment attached>
-        <Form.Group widths={2}>
+        <Form.Group widths={3}>
           <TextField name="title.value" label="Title" error={errors.title?.value} required />
+          <TextField name="location.value" label="Location" error={errors.location?.value} required />
           <TextField name="url" label="URL" error={errors.url} disabled />
         </Form.Group>
         <TextAreaField name="description.value" label="Description" error={errors.description?.value} rows={3} required />
         <Form.Group>
           <CheckboxField name="title.visible" label="Show Title" />
           <CheckboxField name="description.visible" label="Show Description" />
+          <CheckboxField name="location.visible" label="Show Location" />
         </Form.Group>
         <Form.Group widths={3}>
           <Form.Field>
@@ -208,8 +214,9 @@ export function SettingsForm(settings: Settings): JSX.Element {
       </Segment>
       <Header as="h3" attached content="Metadata" subheader="Metadata is hidden from view used in search results and social posting." />
       <Segment attached>
-        <Form.Group widths={3}>
-          <SelectField name="type" label="Type" options={TypeOptions} error={errors.type} required />
+        <Form.Group widths={4}>
+          <SelectField name="og" label="Open Graph Type" options={OGOptions} error={errors.og} required />
+          <SelectField name="schema" label="Schema.org Type" options={SchemaOptions} error={errors.schema} required />
           <TextField name="author.name" label="Author Name" error={errors.author?.name} required />
           <TextField name="author.email" label="Author Email" error={errors.author?.email} required />
         </Form.Group>

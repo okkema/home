@@ -3,7 +3,8 @@ export const DemoSettings: Settings = {
 		name: "Okkema Labs",
 		email: "correos@okkema.org"
 	},
-	type: "website",
+	og: "website",
+	schema: "Organization",
 	url: "",
 	title: {
 		value: "Home Page Generator",
@@ -11,6 +12,10 @@ export const DemoSettings: Settings = {
 	},
 	description: {
 		value: "Navigate to \"/edit\" to configure settings",
+		visible: true,
+	},
+	location: {
+		value: "Planet Earth",
 		visible: true,
 	},
 	image: {

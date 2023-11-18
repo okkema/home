@@ -4,17 +4,6 @@ import "semantic-ui-css/semantic.min.css"
 interface Props extends Settings {}
 
 const settings = Astro.props
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": settings.schema,
-  url: settings.url,
-  logo: `${settings.url}${settings.image.src}`,
-  location: settings.location,
-  email: settings.author.email,
-  description: settings.description.value,
-  name: settings.title.value
-}
 ---
 
 <!doctype html>
@@ -31,7 +20,16 @@ const schema = {
     <meta property="og:url" content={settings.url}>
     <meta property="og:description" content={settings.description.value}>
     <meta property="og:image" content={`${settings.url}${settings.image.src}`}>
-    <script type="application/ld+json" set:html={JSON.stringify(schema)}/>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": settings.schema,
+      url: settings.url,
+      logo: `${settings.url}${settings.image.src}`,
+      location: settings.location,
+      email: settings.author.email,
+      description: settings.description.value,
+      name: settings.title.value
+    })} />
     <style>
       html, body {
         height: 100%;

@@ -41,11 +41,12 @@ module "application" {
   version    = "~> 0.4"
   depends_on = [module.team]
 
-  zone_id      = var.cloudflare_zone_id
-  name         = var.github_repository
-  github_teams = [var.github_repository]
-  use_root     = true
-  path         = "edit"
+  zone_id       = var.cloudflare_zone_id
+  name          = var.github_repository
+  github_teams  = [var.github_repository]
+  use_root      = true
+  path          = "edit"
+  google_emails = [var.google_email]
 }
 
 module "team" {

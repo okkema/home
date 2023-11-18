@@ -1,7 +1,6 @@
 import { defineConfig, passthroughImageService } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
-import sentry from "@sentry/astro";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,8 +16,5 @@ export default defineConfig({
   },
   integrations: [
     react(), 
-    sentry({
-      dsn: process.env.SENTRY_DSN,
-    }),
   ]
 });

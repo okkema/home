@@ -25,7 +25,7 @@ const settings = Astro.props
       "@type": settings.schema,
       url: settings.url,
       logo: `${settings.url}${settings.image.src}`,
-      location: settings.location,
+      location: settings.location.value,
       email: settings.author.email,
       description: settings.description.value,
       name: settings.title.value

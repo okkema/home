@@ -1,5 +1,5 @@
 {
-  "name": "home",
+  "name": "@okkema/home",
   "description": "Okkema Labs Home Page",
   "type": "module",
   "version": "0.0.3",

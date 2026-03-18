@@ -3,6 +3,20 @@
   "description": "Okkema Labs Home Page",
   "type": "module",
   "version": "0.0.3",
+  "files": [
+    "bin",
+    "functions",
+    "public",
+    "src",
+    "terraform",
+    "!.terraform*",
+    "astro.config.mjs",
+    "package.json",
+    "tsconfig.json"
+  ],
+  "bin": {
+    "@okkema/home": "./bin/build.js"
+  },
   "scripts": {
     "build": "npm run build:astro",
     "build:astro": "astro build",

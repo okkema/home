@@ -1,9 +1,7 @@
 variable "cloudflare_account_id" {}
 variable "cloudflare_zone_id" {}
 variable "github_repository" {}
-variable "google_email" {
-  sensitive = true
-}
+variable "auth0_role" {}
 
 # GitHub Actions Secrets
 variable "TF_API_TOKEN" {
@@ -12,9 +10,8 @@ variable "TF_API_TOKEN" {
 variable "ACTIONS_GITHUB_TOKEN" {
   sensitive = true
 }
-
-# Environment Variables
-variable "SENTRY_DSN" {
+variable "NPM_TOKEN" {
   sensitive = true
 }
+
 variable "CLOUDFLARE_ACCESS_DOMAIN" {}

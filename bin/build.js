@@ -1,19 +1,12 @@
-const { spawnSync } = require("child_process")
-const fs = require("fs")
-const path = require("path")
+import { spawnSync } from "child_process";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const packageRoot = path.resolve(__dirname, "..")
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-for (const folder in ["dist", "terraform"]) {
-    fs.cpSync(
-        path.join(packageRoot, folder),
-        path.join(process.cwd(), folder), {
-        recursive: true,
-        force: true,
-        dereference: true
-    })
-}
-
+const packageRoot = path.resolve(__dirname, "..");
 
 const result = spawnSync("npm", ["run", "build"], {
     cwd: packageRoot,
@@ -23,4 +16,14 @@ const result = spawnSync("npm", ["run", "build"], {
 
 if (result.status !== 0) {
     process.exit(result.status || 1);
+}
+
+for (const folder of ["dist", "terraform"]) {
+    fs.cpSync(
+        path.join(packageRoot, folder),
+        path.join(process.cwd(), folder), {
+        recursive: true,
+        force: true,
+        dereference: true
+    });
 }

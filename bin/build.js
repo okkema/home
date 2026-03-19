@@ -20,12 +20,13 @@ if (result.status !== 0) {
     process.exit(result.status || 1)
 }
 
-for (const folder of ["dist", "terraform"]) {
+for (const folder of ["dist", "functions", "terraform"]) {
     const targetPath = path.join(localRoot, folder)
-    if (folder !== "dist" && fs.existsSync(targetPath)) {
+    if (folder === "terraform" && fs.existsSync(targetPath)) {
         console.log(`Skipping copy: ${folder} already exists.`)
         continue
     }
+    console.log(`Copying folder: ${folder}`)
     fs.cpSync(
         path.join(packageRoot, folder),
         targetPath, {

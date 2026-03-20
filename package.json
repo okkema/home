@@ -2,7 +2,7 @@
   "name": "@okkema/home",
   "description": "Okkema Labs Home Page",
   "type": "module",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "publishConfig": {
     "access": "public"
   },
@@ -44,7 +44,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
     "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^2.1.4",
+    "semantic-ui-react": "3.0.0-beta.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {

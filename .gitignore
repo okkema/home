@@ -1,7 +1,0 @@
-node_modules
-.env
-.wrangler
-dist
-.terraform
-.dev.vars
-functions/*path*.js

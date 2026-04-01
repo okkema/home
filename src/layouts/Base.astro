@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+
+interface Props extends Settings {}
+
+const settings = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content={settings.description.value}>
+        <meta name="author" content={`${settings.author.name} <${settings.author.email}>`}>
+        <title>{settings.title.value}</title>
+        <link rel="icon" href="favicon.ico">
+        <meta property="og:title" content={settings.title.value}>
+        <meta property="og:type" content={settings.og}>
+        <meta property="og:url" content={settings.url}>
+        <meta property="og:description" content={settings.description.value}>
+        <meta property="og:image" content={`${settings.url}${settings.image.src}`}>
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": settings.schema,
+            url: settings.url,
+            logo: `${settings.url}${settings.image.src}`,
+            location: settings.location.value,
+            email: settings.author.email,
+            description: settings.description.value,
+            name: settings.title.value
+            })} />
+        <style>
+            html, body {
+                height: 100%;
+            }
+            body{
+                margin: 0;
+                padding: 16px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

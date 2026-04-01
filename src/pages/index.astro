@@ -1,17 +1,70 @@
 ---
+import Base from "../layouts/Base.astro"
+import { DemoSettings } from "../demo"
+import { Icon } from "astro-icon/components"
 
+// const blob = await Astro.locals.runtime.env.BUCKET.get("settings.json")
+const settings = DemoSettings
+
+const sizeMap = {
+  mini: 'w-8',
+  tiny: 'w-16',
+  small: 'w-32',
+  medium: 'w-48',
+  large: 'w-64'
+};
+
+const imageClass = sizeMap[settings.image.size] || 'w-48';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base {...settings}>
+<div class="inline-flex flex-col border border-gray-300 rounded-md overflow-hidden min-w-[300px] bg-white shadow-sm">
+  {/* Image Segment */}
+  <div class="p-4 border-b border-gray-300 flex justify-center bg-white">
+    <img 
+      src={settings.image.src} 
+      alt={settings.image.alt} 
+      class={`${imageClass} h-auto object-contain`}
+    />
+  </div>
+
+  {/* Title Segment */}
+  {settings.title.visible && (
+    <div class="p-5 text-3xl font-bold text-center border-b border-gray-300 text-gray-900 leading-tight">
+      {settings.title.value}
+    </div>
+  )}
+
+  {/* Description Segment */}
+  {settings.description.visible && (
+    <div class="p-4 text-lg text-center border-b border-gray-300 text-gray-700">
+      {settings.description.value}
+    </div>
+  )}
+
+  {/* Location Segment */}
+  {settings.location.visible && (
+    <div class="p-3 text-sm text-center border-b border-gray-300 text-gray-500 flex items-center justify-center gap-2">
+      {settings.location.icon && <Icon name={`bi:${settings.location.icon}`} size={16} />}
+      {settings.location.value}
+    </div>
+  )}
+
+  {/* Link Buttons */}
+  <div class="flex flex-col">
+    {settings.links.map((link, index) => (
+      <a
+        href={link.href}
+        class:list={[
+          "p-4 text-center font-semibold transition-all duration-200 flex items-center justify-center gap-3 hover:brightness-95 active:brightness-90",
+          index !== settings.links.length - 1 ? "border-b border-gray-300" : "",
+          link.color ? `bg-${link.color}-600 text-white` : "bg-gray-100 text-gray-800"
+        ]}
+        style={link.color && !['red', 'blue', 'green'].includes(link.color) ? `background-color: ${link.color}; color: white;` : ''}
+      >
+        {link.icon && <Icon name={`bi:${link.icon}`} size={20} />}
+        {link.title}
+      </a>
+    ))}
+  </div>
+</div></Base>

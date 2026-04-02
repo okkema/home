@@ -32,7 +32,6 @@ type Settings = {
   location: {
     value: string
     visible: boolean
-    icon?: string
   }
   description: {
     value: string

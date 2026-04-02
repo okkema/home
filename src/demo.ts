@@ -17,7 +17,6 @@ export const DemoSettings: Settings = {
 	location: {
 		value: "Planet Earth",
 		visible: true,
-		icon: "geo-alt-fill",
 	},
 	image: {
 		src: "/logo.png",

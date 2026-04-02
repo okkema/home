@@ -26,7 +26,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "start": "astro dev",
-    "generate-types": "wrangler types"
+    "types": "wrangler types"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",

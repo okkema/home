@@ -1,0 +1,277 @@
+---
+interface Props extends Settings {}
+const settings = Astro.props;
+---
+
+<div class="max-w-4xl mx-auto space-y-0 text-sm">
+  <div class="border border-gray-300 bg-gray-50 px-4 py-3 rounded-t-md">
+    <h3 class="font-bold text-base text-gray-800">Content</h3>
+    <p class="text-gray-500 text-xs">Content is visible and the main component of the home page.</p>
+  </div>
+  
+  <div class="border border-t-0 border-gray-300 p-4 bg-white space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="flex flex-col gap-1">
+        <label class="font-bold text-gray-700">Title <span class="text-red-500">*</span></label>
+        <input type="text" id="title-value" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-1 focus:ring-blue-500 outline-none" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="font-bold text-gray-700">Location <span class="text-red-500">*</span></label>
+        <input type="text" id="location-value" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-1 focus:ring-blue-500 outline-none" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="font-bold text-gray-700">URL</label>
+        <input type="text" id="url" disabled class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-100 cursor-not-allowed" />
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label class="font-bold text-gray-700">Description <span class="text-red-500">*</span></label>
+      <textarea rows="3" id="description-value" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-1 focus:ring-blue-500 outline-none"></textarea>
+    </div>
+
+    <div class="flex gap-6 py-2">
+      <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="title-visible" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" /> Show Title</label>
+      <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="description-visible" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" /> Show Description</label>
+      <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="location-visible" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" /> Show Location</label>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="flex flex-col gap-1">
+        <label class="font-bold text-gray-700">Image</label>
+        <input type="file" id="image-file" class="text-xs file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="font-bold text-gray-700">Alt</label>
+        <input type="text" id="image-alt" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-1 focus:ring-blue-500 outline-none" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="font-bold text-gray-700">Size</label>
+        <select id="image-size" class="w-full border border-gray-300 rounded px-3 py-2 bg-white focus:ring-1 focus:ring-blue-500 outline-none">
+          <option value="mini">Mini</option>
+          <option value="tiny">Tiny</option>
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+          <option value="big">Big</option>
+          <option value="huge">Huge</option>
+          <option value="massive">Massive</option>
+        </select>
+      </div>
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-bold text-gray-700">Image Src</label>
+      <input type="text" id="image-src" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-1 focus:ring-blue-500 outline-none" />
+    </div>
+  </div>
+
+  <div class="border border-t-0 border-gray-300 bg-gray-50 px-4 py-3 flex justify-between items-center">
+    <div>
+      <h3 class="font-bold text-base text-gray-800">Links</h3>
+      <p class="text-gray-500 text-xs">Add or remove links that appear beneath the main content.</p>
+    </div>
+    <button id="add-link" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors text-xs">Add</button>
+  </div>
+
+  <div class="border border-t-0 border-gray-300 p-4 bg-white">
+    <div id="links-container" class="space-y-4">
+      <!-- Links will be added here dynamically -->
+    </div>
+  </div>
+
+  <div class="border border-t-0 border-gray-300 bg-gray-50 px-4 py-3">
+    <h3 class="font-bold text-base text-gray-800">Metadata</h3>
+    <p class="text-gray-500 text-xs">Metadata is hidden from view used in search results and social posting.</p>
+  </div>
+
+  <div class="border border-t-0 border-gray-300 p-4 bg-white space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="flex flex-col gap-1">
+        <label class="font-bold text-gray-700">Schema Type</label>
+        <select id="type" class="w-full border border-gray-300 rounded px-3 py-2 bg-white focus:ring-1 focus:ring-blue-500 outline-none">
+          <option value="Organization">Organization</option>
+        </select>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="font-bold text-gray-700">OG Type</label>
+        <select id="og-type" class="w-full border border-gray-300 rounded px-3 py-2 bg-white focus:ring-1 focus:ring-blue-500 outline-none">
+          <option value="website">Website</option>
+          <option value="profile">Profile</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col gap-1">
+        <label class="font-bold text-gray-700">Author Name <span class="text-red-500">*</span></label>
+        <input type="text" id="author-name" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-1 focus:ring-blue-500 outline-none" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="font-bold text-gray-700">Author Email <span class="text-red-500">*</span></label>
+        <input type="email" id="author-email" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-1 focus:ring-blue-500 outline-none" />
+      </div>
+    </div>
+  </div>
+
+  <div class="border border-t-0 border-gray-300 bg-gray-50 px-4 py-3 rounded-b-md flex justify-end gap-2">
+    <button id="cancel" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded text-xs transition-colors">Cancel</button>
+    <button id="save" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs transition-colors">Save</button>
+  </div>
+</div>
+
+<script define:vars={{settings}}>
+  // Populate form with settings
+  document.getElementById('title-value').value = settings.title?.value || '';
+  document.getElementById('location-value').value = settings.location?.value || '';
+  document.getElementById('url').value = settings.url || '';
+  document.getElementById('description-value').value = settings.description?.value || '';
+  document.getElementById('title-visible').checked = settings.title?.visible || false;
+  document.getElementById('description-visible').checked = settings.description?.visible || false;
+  document.getElementById('location-visible').checked = settings.location?.visible || false;
+  document.getElementById('image-src').value = settings.image?.src || '';
+  document.getElementById('image-alt').value = settings.image?.alt || '';
+  document.getElementById('image-size').value = settings.image?.size || 'medium';
+  document.getElementById('type').value = settings.type || 'Organization';
+  document.getElementById('og-type').value = settings['og-type'] || 'website';
+  document.getElementById('author-name').value = settings.author?.name || '';
+  document.getElementById('author-email').value = settings.author?.email || '';
+
+  // Links
+  const linksContainer = document.getElementById('links-container');
+  const addLinkBtn = document.getElementById('add-link');
+
+  function createLinkElement(link = { title: '', href: '', icon: '', color: '' }) {
+    const linkDiv = document.createElement('div');
+    linkDiv.className = 'p-4 border border-gray-200 rounded bg-gray-50';
+    linkDiv.innerHTML = `
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="flex flex-col gap-1">
+          <label class="font-bold text-gray-700 text-xs uppercase">Title</label>
+          <input type="text" class="w-full border border-gray-300 rounded px-2 py-1 focus:ring-1 focus:ring-blue-500 outline-none bg-white link-title" value="${link.title}" />
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="font-bold text-gray-700 text-xs uppercase">href</label>
+          <input type="text" class="w-full border border-gray-300 rounded px-2 py-1 focus:ring-1 focus:ring-blue-500 outline-none bg-white link-href" value="${link.href}" />
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="font-bold text-gray-700 text-xs uppercase">Icon</label>
+          <input type="text" class="w-full border border-gray-300 rounded px-2 py-1 focus:ring-1 focus:ring-blue-500 outline-none bg-white link-icon" value="${link.icon}" />
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="font-bold text-gray-700 text-xs uppercase">Color</label>
+          <select class="w-full border border-gray-300 rounded px-2 py-1 bg-white outline-none link-color">
+            <option value=""></option>
+            <option value="black">Black</option>
+            <option value="blue">Blue</option>
+            <option value="brown">Brown</option>
+            <option value="green">Green</option>
+            <option value="grey">Grey</option>
+            <option value="olive">Olive</option>
+            <option value="orange">Orange</option>
+            <option value="pink">Pink</option>
+            <option value="purple">Purple</option>
+            <option value="red">Red</option>
+            <option value="teal">Teal</option>
+            <option value="violet">Violet</option>
+            <option value="yellow">Yellow</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex justify-end mt-3">
+        <button class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-xs remove-link">Remove</button>
+      </div>
+    `;
+    linkDiv.querySelector('.link-color').value = link.color;
+    linkDiv.querySelector('.remove-link').addEventListener('click', () => {
+      linksContainer.removeChild(linkDiv);
+    });
+    return linkDiv;
+  }
+
+  // Add initial links
+  if (settings.links && settings.links.length > 0) {
+    settings.links.forEach(link => {
+      linksContainer.appendChild(createLinkElement(link));
+    });
+  } else {
+    linksContainer.appendChild(createLinkElement());
+  }
+
+  // Add link button
+  addLinkBtn.addEventListener('click', () => {
+    linksContainer.appendChild(createLinkElement());
+  });
+
+  // File upload
+  document.getElementById('image-file').addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+      try {
+        const response = await fetch('/edit/image', {
+          method: 'POST',
+          body: formData,
+        });
+        const json = await response.json();
+        const url = `${window.location.protocol}//${window.location.host}${json.path}`;
+        document.getElementById('image-src').value = url;
+      } catch (error) {
+        console.error('Upload failed', error);
+      }
+    }
+  });
+
+  // Save functionality
+  document.getElementById('save').addEventListener('click', async () => {
+    const settings = {
+      title: {
+        value: document.getElementById('title-value').value,
+        visible: document.getElementById('title-visible').checked
+      },
+      location: {
+        value: document.getElementById('location-value').value,
+        visible: document.getElementById('location-visible').checked
+      },
+      description: {
+        value: document.getElementById('description-value').value,
+        visible: document.getElementById('description-visible').checked
+      },
+      url: document.getElementById('url').value,
+      image: {
+        src: document.getElementById('image-src').value,
+        alt: document.getElementById('image-alt').value,
+        size: document.getElementById('image-size').value
+      },
+      links: Array.from(document.querySelectorAll('#links-container > div')).map(linkDiv => ({
+        title: linkDiv.querySelector('.link-title').value,
+        href: linkDiv.querySelector('.link-href').value,
+        icon: linkDiv.querySelector('.link-icon').value,
+        color: linkDiv.querySelector('.link-color').value
+      })),
+      type: document.getElementById('type').value,
+      'og-type': document.getElementById('og-type').value,
+      author: {
+        name: document.getElementById('author-name').value,
+        email: document.getElementById('author-email').value
+      }
+    };
+
+    try {
+      const response = await fetch('/edit/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(settings)
+      });
+      if (response.ok) {
+        alert('Settings saved successfully!');
+      } else {
+        alert('Failed to save settings.');
+      }
+    } catch (error) {
+      console.error('Save failed', error);
+      alert('Failed to save settings.');
+    }
+  });
+</script>

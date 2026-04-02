@@ -1,11 +1,10 @@
 ---
-import Base from "../layouts/Base.astro";
-import Home from "../components/Home.astro";
-import { DemoSettings } from "../demo";
+import Base from "../../layouts/Base.astro";
+import Form from "../../components/Form.astro";
+import { DemoSettings } from "../../demo";
 const blob = await Astro.locals.runtime.env.BUCKET.get("settings.json");
 const settings = await blob?.json<Settings>() ?? DemoSettings;
 ---
-
 <Base {...settings}>
-  <Home {...settings}/>
+  <Form {...settings} />
 </Base>

@@ -49,7 +49,7 @@ type Settings = {
 }
 
 // Runtime type corresponds to "mode" in /astro.config.mjs
-type Runtime = import("@astrojs/cloudflare").DirectoryRuntime<ENV>
+type Runtime = import("@astrojs/cloudflare").Runtime<ENV>
 declare namespace App {
   interface Locals extends Runtime {}
 }

@@ -1,4 +1,5 @@
 {
+	"$schema": "./node_modules/wrangler/config-schema.json",
 	"compatibility_date": "2026-03-17",
 	"compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
 	"name": "home",
@@ -9,5 +10,8 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	"r2_buckets": [{
+		"binding": "BUCKET"
+	}]
 }

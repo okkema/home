@@ -1,11 +1,27 @@
 locals {
   audience = "https://${module.zone.name}"
-  scope = "write:settings"
+  scope    = "write:settings"
+  secrets = {
+    "TF_API_TOKEN" : var.TF_API_TOKEN,
+    "ACTIONS_GITHUB_TOKEN" : var.ACTIONS_GITHUB_TOKEN,
+    "NPM_TOKEN" : var.NPM_TOKEN
+  }
+}
+
+module "secrets" {
+  for_each = local.secrets
+
+  source  = "app.terraform.io/okkema/secret/github"
+  version = "~> 0.2"
+
+  repository = var.github_repository
+  key        = each.key
+  value      = each.value
 }
 
 module "page" {
-  source     = "app.terraform.io/okkema/page/cloudflare"
-  version    = "~> 1.0"
+  source  = "app.terraform.io/okkema/page/cloudflare"
+  version = "~> 1.0"
 
   account_id = var.cloudflare_account_id
   zone_id    = var.cloudflare_zone_id
@@ -44,8 +60,8 @@ module "sentry" {
   source  = "app.terraform.io/okkema/project/sentry"
   version = "~> 0.4"
 
-  github_repository   = var.github_repository
-  platform            = "other"
+  github_repository = var.github_repository
+  platform          = "other"
 }
 
 module "zone" {

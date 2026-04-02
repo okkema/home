@@ -1,7 +1,8 @@
-node_modules
+dist/
+.astro/
+node_modules/
+.terraform/
+.wrangler/
+
 .env
-.wrangler
-dist
-.terraform
-.dev.vars
-functions/*path*.js
+worker-configuration.d.ts

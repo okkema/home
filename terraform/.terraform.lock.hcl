@@ -3,7 +3,7 @@
 
 provider "registry.terraform.io/auth0/auth0" {
   version     = "1.41.0"
-  constraints = "~> 1.29"
+  constraints = "~> 1.5, ~> 1.29"
   hashes = [
     "h1:dhtqULBQ/NgQfPOte5JRGbsteC2UuVgILVJhdwoyPxM=",
     "zh:247330b82e7e638c3eb81cb95192a0164675e740f5c52d5fbb42254ee0af3b71",
@@ -63,31 +63,29 @@ provider "registry.terraform.io/integrations/github" {
 }
 
 provider "registry.terraform.io/jianyuan/sentry" {
-  version     = "0.14.11"
+  version     = "0.14.13"
   constraints = "~> 0.14"
   hashes = [
-    "h1:lqEuVi2+qcdJCZPoONOdqBn5ujCim++5DDGsml466oY=",
+    "h1:f2ezUlr8arqx1QSKZK2akQBXOMqAex9iVeWsWXR02pY=",
+    "zh:06c89cb0f2bfe70eac1981397eb99d65797ad42f621ca801d64e4cc4da6a4acb",
+    "zh:0af239bf0a08e6147b221d4e6e35da7edfe0775ca71ed6532781b12a67a8d530",
     "zh:0dde99e7b343fa01f8eefc378171fb8621bedb20f59157d6cc8e3d46c738105f",
-    "zh:21f41b7b5caf92d1d91358382ed1fa7e0ac59d2bf3854fde40e0a4227078b444",
-    "zh:331a4e578879c630d9089ebb5471eb71652a973e68b37712bc3130082852340a",
-    "zh:3f342162041097a8978896c6c579a21fd591efd6b579bffa89c789664379309d",
-    "zh:6301ca047a82b38628f4970cb2c3c0a1398f0e80808ec1abcdc4375048aad9ce",
-    "zh:6d72efef7c50bdf1013624e227d4756b4ebcc7d7308233d89d50f3bb2de47f43",
-    "zh:810ceb5e7571c76a0f6e0ac4de408ee18982a0efcd4f11fb6b855bb23c9377d8",
-    "zh:870bd7f8be2b7e5ad7a3ae5b966821c843aaa2811eafcff03edd7696fa0170bc",
-    "zh:9d0dd4faa04d291f260d37e654bdb9b7c0077e82d9c0091bf4b11d30eaad92d9",
-    "zh:a3377b6c06aa5b8af86db433788a2d65d9555851940d23d0b7f16248b57de006",
-    "zh:ad6948c1a1e4873deee7be030658c52700a2a2253ddee3c3043056a01a532e18",
-    "zh:c15e486edc298cce2072aa05ae990fb2f0b2724a08414da7f38e056fe2e704e4",
-    "zh:d36bfe877317ef72a9ee933f583ce9e30f1b35fdaca0f213ae2883986c02d98a",
-    "zh:edd81697ee9d8b360b33e6acaee63dce04b77eb81b20368e39ed94f1ff88837e",
-    "zh:f1561dac953c93b450ccba3203d5b182bdff1f4555fd126ed37000e7dfe12172",
+    "zh:191d502900ce0787f587a4c19a5ed1edf2c3febfd1b951c008934de11da8339d",
+    "zh:2e134b07260af18bd388c6cde0514f20e13f7e0eb4bd546a27a2d124e06d13f9",
+    "zh:652a8aca36b1dc8e653e75280e88bfc7b6fa6df8bf7aed394ec3e25c5d29aaa4",
+    "zh:8954b702b6039621e36915885c270e44a8a5de8bb7d59a9b35ab7df6aa3d6064",
+    "zh:94a1301d573bad0a94bd21be8f8969ddeb6a0e30e0f3defb47f5dbd4a86ab190",
+    "zh:9aa8a1e2fa458fc4ba68559150b651a8bf4578f287819f0f294d77b47401d2a3",
+    "zh:a47da69be5e91c80d91df006b0338e2afb321fc54f4ceede8fcad6a44f8c21a9",
+    "zh:d3afee7cf78ccf5d36964341a1f36acc2bdd3cfb725c1c356cd94415da5826be",
+    "zh:e6dfa07c57fefed763511da4d5aae008e6b66cc57321f425a2f88786c84ac4b4",
+    "zh:ee2f688ec678087a903232446822ab4defbfc72c733f1d5c5d35e26cf62cf76d",
+    "zh:f7eeac7838d6183f22408d7c98e5c51a6ad55343b85ab48cdfe13dda851a5fa5",
   ]
 }
 
 provider "registry.terraform.io/killmeplz/sodium" {
-  version     = "0.0.3"
-  constraints = "~> 0.0.3"
+  version = "0.0.3"
   hashes = [
     "h1:sweiO6vvcP/5RwEW4/jMwfpKUclAGjP4vuM2d0cAwgU=",
     "zh:0271181beb2c07a43e7628e76215648ef68e93b856bf3cd9b8367091917e4a73",

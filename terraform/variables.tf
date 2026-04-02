@@ -13,5 +13,3 @@ variable "ACTIONS_GITHUB_TOKEN" {
 variable "NPM_TOKEN" {
   sensitive = true
 }
-
-variable "CLOUDFLARE_ACCESS_DOMAIN" {}

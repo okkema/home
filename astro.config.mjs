@@ -1,20 +1,17 @@
-import { defineConfig, passthroughImageService } from "astro/config";
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
 import cloudflare from "@astrojs/cloudflare";
-import react from "@astrojs/react";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  adapter: cloudflare({
-    mode: "directory",
-    routes: {
-      strategy: "exclude"
-    }
-  }),
-  image: {
-    service: passthroughImageService()
-  },
-  integrations: [
-    react(), 
-  ]
+    output: "server",
+    adapter: cloudflare({
+        output: "server",
+        imageService: "passthrough",
+    }),
+    vite: {
+        plugins: [tailwindcss()],
+    },
+    integrations: [icon()],
 });

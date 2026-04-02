@@ -24,11 +24,11 @@ export const DemoSettings: Settings = {
 		alt: "Okkema Labs Official Logo"
 	},
 	links: [
-    {
-      title: "Repository",
-      href: "https://github.com/okkema/home",
-      icon: "github",
-      color: "black"
-    }
+		{
+			title: "Repository",
+			href: "https://github.com/okkema/home",
+			icon: "github",
+			color: "black"
+		}
 	]
 }

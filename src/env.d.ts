@@ -3,25 +3,26 @@
 type R2Bucket = import("@cloudflare/workers-types").R2Bucket
 type ENV = {
   BUCKET: R2Bucket
-  CLOUDFLARE_ACCESS_DOMAIN: string
-  CLOUDFLARE_ACCESS_AUD: string
   SENTRY_DSN: string
+  OAUTH_AUDIENCE: string
+  OAUTH_CLIENT_ID: string
+  OAUTH_CLIENT_SECRET: string
+  OAUTH_TENANT: string
+  OAUTH_SCOPE: string
 }
 
-type SemanticSIZES = import("semantic-ui-react").SemanticSIZES
-type SemanticCOLORS = import("semantic-ui-react").SemanticCOLORS
 type OpenGraphType = "website" | "profile"
 type SchemaOrgType = "Organization"
 type Link = {
   title: string
   href: string
   icon?: string
-  color: SemanticCOLORS | ""
+  color: string
 }
 type Settings = {
   image: {
     src: string
-    size: SemanticSIZES
+    size: "mini" | "tiny" | "small" | "medium" | "large"
     alt: string
   }
   title: {
@@ -47,7 +48,7 @@ type Settings = {
 }
 
 // Runtime type corresponds to "mode" in /astro.config.mjs
-type Runtime = import("@astrojs/cloudflare").DirectoryRuntime<ENV>
+type Runtime = import("@astrojs/cloudflare").Runtime<ENV>
 declare namespace App {
   interface Locals extends Runtime {}
 }

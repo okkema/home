@@ -2,9 +2,9 @@
   "name": "@okkema/home",
   "description": "Okkema Labs Home Page",
   "type": "module",
-  "version": "0.1.4",
-  "publishConfig": {
-    "access": "public"
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22.12.0"
   },
   "files": [
     "bin",
@@ -21,45 +21,21 @@
     "@okkema/home": "./bin/build.js"
   },
   "scripts": {
-    "build": "npm run build:astro",
-    "build:astro": "astro build",
-    "build:storybook": "storybook build",
-    "env": "cp .env .dev.vars",
-    "prestart": "npm run build",
-    "start": "npm run start:wrangler",
-    "start:astro": "astro dev",
-    "start:storybook": "storybook dev -p 6006 --no-open",
-    "start:wrangler": "wrangler pages dev dist --compatibility-date=2023-10-25 --r2=BUCKET",
-    "template:init": "git remote add template git@github.com:okkema/home.git",
-    "template:merge": "git merge template/main -m \"chore: merge template\" --allow-unrelated-histories --squash"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "start": "astro dev",
+    "types": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^7.6.2",
-    "@astrojs/react": "^3.0.4",
-    "@cloudflare/pages-plugin-cloudflare-access": "^1.0.3",
-    "@cloudflare/pages-plugin-sentry": "^1.1.1",
-    "@hookform/resolvers": "^3.3.2",
-    "astro": "^3.4.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.47.0",
-    "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "3.0.0-beta.2",
-    "zod": "^3.22.4"
-  },
-  "devDependencies": {
-    "@storybook/addon-essentials": "^7.5.2",
-    "@storybook/addon-interactions": "^7.5.2",
-    "@storybook/addon-links": "^7.5.2",
-    "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/blocks": "^7.5.2",
-    "@storybook/react": "^7.5.2",
-    "@storybook/react-vite": "^7.5.2",
-    "@storybook/testing-library": "^0.2.2",
-    "@types/react": "^18.2.33",
-    "@types/react-dom": "^18.2.14",
-    "prop-types": "^15.8.1",
-    "storybook": "^7.5.2",
-    "wrangler": "^3.15.0"
+    "@astrojs/cloudflare": "^12.6.12",
+    "@iconify-json/bi": "^1.2.7",
+    "@okkema/worker": "^4.7.4",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^5.18.0",
+    "astro-icon": "^1.1.5",
+    "tailwindcss": "^4.2.2",
+    "wrangler": "^4.75.0"
   }
 }

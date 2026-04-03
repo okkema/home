@@ -72,7 +72,7 @@ const imageClass = sizeMap[settings.image.size] || 'w-48';
                             : ""
                     }
                 >
-                    {link.icon && <Icon name={`bi:${link.icon}`} size={20} />}
+                    {link.icon && <Icon name={`${link.icon}`} size={20} />}
                     {link.title}
                 </a>
             ))

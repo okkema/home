@@ -30,10 +30,14 @@ module "page" {
   hostnames  = ["@"]
   buckets    = [{ name = "BUCKET", bucket_name = module.bucket.id }]
   secrets = [
-    { name = "OAUTH_CLIENT_ID", text = module.client.client_id, },
-    { name = "OAUTH_AUDIENCE", text = local.audience, },
-    { name = "OAUTH_TENANT", text = module.server.domain, },
+    { name = "OAUTH_CLIENT_SECRET", text = module.client.client_secret, },
     { name = "SENTRY_DSN", text = module.sentry.dsn, }
+  ]
+  env_vars = [
+    { name = "OAUTH_AUDIENCE", text = local.audience, },
+    { name = "OAUTH_CLIENT_ID", text = module.client.client_id, },
+    { name = "OAUTH_SCOPE", text = local.scope, },
+    { name = "OAUTH_TENANT", text = module.server.domain, },
   ]
 }
 

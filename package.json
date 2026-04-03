@@ -32,7 +32,7 @@
     "@astrojs/cloudflare": "^12.6.12",
     "@iconify-json/lucide": "^1.2.101",
     "@iconify-json/simple-icons": "^1.2.76",
-    "@okkema/worker": "^4.7.4",
+    "@okkema/worker": "^4.7.5",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^5.18.0",
     "astro-icon": "^1.1.5",

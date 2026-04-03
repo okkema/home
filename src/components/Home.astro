@@ -10,6 +10,30 @@ const sizeMap = {
   large: 'w-64'
 };
 const imageClass = sizeMap[settings.image.size] || 'w-48';
+const colorMap = {
+  black: 'bg-black',
+  white: 'bg-white',
+  gray: 'bg-gray-100',
+  grey: 'bg-gray-500',
+  blue: 'bg-blue-500',
+  red: 'bg-red-500',
+  green: 'bg-green-500',
+  yellow: 'bg-yellow-500',
+  purple: 'bg-purple-500',
+  pink: 'bg-pink-500',
+  orange: 'bg-orange-500',
+  teal: 'bg-teal-500',
+  violet: 'bg-violet-500',
+  cyan: 'bg-cyan-500',
+  lime: 'bg-lime-500',
+  emerald: 'bg-emerald-500',
+  indigo: 'bg-indigo-500',
+  sky: 'bg-sky-500',
+  amber: 'bg-amber-500',
+  rose: 'bg-rose-500',
+  fuchsia: 'bg-fuchsia-500',
+  slate: 'bg-slate-500'
+};
 ---
 
 <div class="inline-flex flex-col border border-gray-300 rounded-md overflow-hidden min-w-[300px] bg-white shadow-sm">
@@ -61,16 +85,10 @@ const imageClass = sizeMap[settings.image.size] || 'w-48';
                         index !== settings.links.length - 1
                             ? "border-b border-gray-300"
                             : "",
-                        link.color
-                            ? `bg-${link.color}-600 text-white`
-                            : "bg-gray-100 text-gray-800",
+                        link.color && colorMap[link.color]
+                            ? `${colorMap[link.color]} text-white`
+                            : "bg-white text-black",
                     ]}
-                    style={
-                        link.color &&
-                        !["red", "blue", "green"].includes(link.color)
-                            ? `background-color: ${link.color}; color: white;`
-                            : ""
-                    }
                 >
                     {link.icon && <Icon name={`${link.icon}`} size={20} />}
                     {link.title}

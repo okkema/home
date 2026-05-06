@@ -1,0 +1,24 @@
+---
+interface Props {
+    title?: string
+    description?: string
+    position?: "top" | "bottom"
+}
+const { title, description, position } = Astro.props;
+const classes = (function() {
+    switch (position) {
+        case "top": return "rounded-t-md";
+        case "bottom": return "border-t-0 rounded-b-md";
+        default: return "border-t-0";
+    }
+})();
+---
+<div class={`border border-gray-300 bg-gray-50 px-4 py-3 flex justify-between items-center ${classes}`}>
+    <div>
+        <h3 class="font-bold text-base text-gray-800">{title}</h3>
+        <p class="text-gray-500 text-xs">{description}</p>
+    </div>
+    <div>
+        <slot />
+    </div>
+</div>

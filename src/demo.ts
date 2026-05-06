@@ -27,7 +27,7 @@ export const DemoSettings: Settings = {
 		{
 			title: "Repository",
 			href: "https://github.com/okkema/home",
-			icon: "github",
+			icon: "simple-icons:github",
 			color: "black"
 		}
 	]

@@ -1,0 +1,14 @@
+---
+interface Props {
+    label: string
+    key: string
+    required?: boolean
+    disabled?: boolean
+}
+const { label, key, required, disabled } = Astro.props;
+const classes = disabled ? "bg-gray-100 cursor-not-allowed" : "bg-white focus:ring-1 focus:ring-blue-500 outline-none";
+---
+<div class="flex flex-col gap-1">
+    <label class="font-bold text-gray-700">{label} {required ? <span class="text-red-500">*</span> : ""}</label>
+    <input type="text" id={key} name={key} x-model={key} class={`w-full border border-gray-300 rounded px-3 py-2 ${classes}`} />
+</div>
